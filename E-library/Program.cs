@@ -1,7 +1,14 @@
+using E_library.DAL;
 using FastEndpoints;
 using FastEndpoints.Swagger;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<AppDbContext>(o =>
+{
+    o.UseNpgsql(builder.Configuration.GetConnectionString("Elibrary"));
+});
 
 builder.Services.AddFastEndpoints(o =>
 {
