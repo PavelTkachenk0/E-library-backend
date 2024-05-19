@@ -22,4 +22,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\E-library.DAL\E.library.DAL.csproj" />
+    <ProjectReference Include="..\E-library.Domain\E.library.Domain.csproj" />
+    <ProjectReference Include="..\E-library.Service\E.library.Service.csproj" />
+  </ItemGroup>
+
 </Project>
