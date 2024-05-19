@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E.library", "E.library.cspr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E.library.DAL", "..\E-library.DAL\E.library.DAL.csproj", "{FCEDDA1D-C66B-4F55-B95D-70B72FB78B88}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E.library.Service", "..\E-library.Service\E.library.Service.csproj", "{D9F6B412-2409-4BFF-B4BE-9887D1A3D288}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "E.library.Domain", "..\E-library.Domain\E.library.Domain.csproj", "{258E66DC-93BA-4591-8D37-5E5F7DF825A9}"
 EndProject
 Global
@@ -25,10 +23,6 @@ Global
 		{FCEDDA1D-C66B-4F55-B95D-70B72FB78B88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCEDDA1D-C66B-4F55-B95D-70B72FB78B88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCEDDA1D-C66B-4F55-B95D-70B72FB78B88}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D9F6B412-2409-4BFF-B4BE-9887D1A3D288}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D9F6B412-2409-4BFF-B4BE-9887D1A3D288}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D9F6B412-2409-4BFF-B4BE-9887D1A3D288}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D9F6B412-2409-4BFF-B4BE-9887D1A3D288}.Release|Any CPU.Build.0 = Release|Any CPU
 		{258E66DC-93BA-4591-8D37-5E5F7DF825A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{258E66DC-93BA-4591-8D37-5E5F7DF825A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{258E66DC-93BA-4591-8D37-5E5F7DF825A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
