@@ -25,7 +25,10 @@
   <ItemGroup>
     <ProjectReference Include="..\E-library.DAL\E.library.DAL.csproj" />
     <ProjectReference Include="..\E-library.Domain\E.library.Domain.csproj" />
-    <ProjectReference Include="..\E-library.Service\E.library.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Endpoints\Groups\" />
   </ItemGroup>
 
 </Project>
