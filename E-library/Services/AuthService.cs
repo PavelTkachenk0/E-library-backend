@@ -63,6 +63,11 @@ public class AuthService(AppDbContext appDbContext)
 
     public async Task<LoginResponse?> Register(RegisterRequest req, CancellationToken ct)
     {
+        if (_appDbContext.Users.Select(x => x.Email).Contains(req.Email))
+        {
+            return null;
+        }
+
         var userEntity = _appDbContext.Users.Add(new User
         {
             Email = req.Email,

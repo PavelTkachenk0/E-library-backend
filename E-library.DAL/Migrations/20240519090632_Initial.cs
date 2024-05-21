@@ -70,8 +70,8 @@ namespace E_library.DAL.Migrations
                     Genre = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
                     Title = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: false),
                     Description = table.Column<string>(type: "character varying(10000)", maxLength: 10000, nullable: true),
-                    DateOfPublishing = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    DateOfWriting = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    DateOfPublishing = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    DateOfWriting = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     CountOfPages = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -122,7 +122,7 @@ namespace E_library.DAL.Migrations
                     BookId = table.Column<int>(type: "integer", nullable: false),
                     Score = table.Column<int>(type: "integer", nullable: false),
                     Text = table.Column<string>(type: "character varying(10000)", maxLength: 10000, nullable: true),
-                    Created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    Created = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
