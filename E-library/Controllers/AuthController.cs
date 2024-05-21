@@ -1,13 +1,11 @@
-﻿using E_library.DAL;
-using E_library.Domain.Models.DTOs;
+﻿using E_library.Requests;
 using E_library.Responses;
 using E_library.Services;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using E_library.Requests;
 
 namespace E_library.Controllers;
 

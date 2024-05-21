@@ -1,5 +1,6 @@
 using E_library.DAL;
 using E_library.Domain.Constants;
+using E_library.Mapping;
 using E_library.Services;
 using FastEndpoints;
 using FastEndpoints.Swagger;
@@ -26,6 +27,8 @@ builder.Services.SwaggerDocument(swagger =>
 
 });
 
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie();
 
@@ -48,6 +51,12 @@ builder.Services.AddAuthorization(auth =>
 });
 
 builder.Services.AddScoped<AuthService>();
+
+builder.Services.AddScoped<BookService>();
+
+builder.Services.AddScoped<AuthorService>();
+
+builder.Services.AddScoped<CommentService>();  
 
 var app = builder.Build();
 

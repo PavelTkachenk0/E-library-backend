@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
     <PackageReference Include="FastEndpoints.Generator" Version="5.21.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -25,10 +26,6 @@
   <ItemGroup>
     <ProjectReference Include="..\E-library.DAL\E.library.DAL.csproj" />
     <ProjectReference Include="..\E-library.Domain\E.library.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Endpoints\Groups\" />
   </ItemGroup>
 
 </Project>

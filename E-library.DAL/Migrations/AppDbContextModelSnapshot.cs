@@ -76,10 +76,10 @@ namespace E_library.DAL.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime>("DateOfPublishing")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DateOfWriting")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
                         .HasMaxLength(10000)
@@ -114,7 +114,7 @@ namespace E_library.DAL.Migrations
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("timestamp with time zone");
+                        .HasColumnType("timestamp without time zone");
 
                     b.Property<int>("Score")
                         .HasColumnType("integer");
