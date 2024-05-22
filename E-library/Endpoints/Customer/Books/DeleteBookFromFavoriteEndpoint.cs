@@ -4,13 +4,13 @@ using FastEndpoints;
 
 namespace E_library.Endpoints.Customer.Books;
 
-public class PostBookToFavoriteEndpoint(BookService bookService) : EndpointWithoutRequest
+public class DeleteBookFromFavoriteEndpoint(BookService bookService) : EndpointWithoutRequest
 {
     private readonly BookService _bookService = bookService;
 
     public override void Configure()
     {
-        Post("favorites/{id:int}");
+        Delete("favorites/{id:int}");
         Group<BookGroup>();
     }
 
@@ -18,15 +18,17 @@ public class PostBookToFavoriteEndpoint(BookService bookService) : EndpointWitho
     {
         var bookId = Route<int>("id");
 
-        var result = await _bookService.AddBookToFavorite(bookId, HttpContext, ct);
+        var result = await _bookService.DeleteBookFromFavorite(bookId, HttpContext, ct);
 
         if (result)
         {
             await SendOkAsync(ct);
+            return;
         }
         else
         {
-            await SendNotFoundAsync(ct);
+            await SendNotFoundAsync(ct); 
+            return;
         }
     }
 }

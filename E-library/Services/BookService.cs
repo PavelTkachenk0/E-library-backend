@@ -20,6 +20,7 @@ public class BookService(AppDbContext appDbContext, IMapper mapper)
             .Select(b => new BookDTO
             {
                 Id = b.Id,
+                AuthorId = b.AuthorId,
                 Name = b.Title,
                 CoverPath = b.CoverPath,
                 CountOfPages = b.CountOfPages,
@@ -46,6 +47,7 @@ public class BookService(AppDbContext appDbContext, IMapper mapper)
                 .Where(x => x.Users.Select(u => u.Email).Contains(httpContext.User.FindFirstValue(ClaimTypes.Email)))
                 .Select(x => new BookDTO
                 {
+                    AuthorId = x.AuthorId,
                     CountOfPages = x.CountOfPages,
                     CoverPath = x.CoverPath,
                     DateOfPublishing = x.DateOfPublishing,
@@ -73,6 +75,7 @@ public class BookService(AppDbContext appDbContext, IMapper mapper)
             .Where(x => x.Id ==  bookId)
             .Select(x => new BookResponse
             {
+                AuthorId = x.AuthorId,
                 CountOfPages = x.CountOfPages,
                 CoverPath = x.CoverPath,
                 DateOfPublishing = x.DateOfPublishing,
@@ -131,6 +134,7 @@ public class BookService(AppDbContext appDbContext, IMapper mapper)
                         .Where(b => b.Title.Contains(searchPatter))
                         .Select(b => new BookDTO
                         {
+                            AuthorId = b.AuthorId,
                             CountOfPages = b.CountOfPages,
                             CoverPath = b.CoverPath,
                             DateOfPublishing = b.DateOfPublishing,
@@ -152,9 +156,9 @@ public class BookService(AppDbContext appDbContext, IMapper mapper)
         };
     }
 
-    public async Task<bool> AddBookToFavorite(int boolId, HttpContext httpContext, CancellationToken ct)
+    public async Task<bool> AddBookToFavorite(int bookId, HttpContext httpContext, CancellationToken ct)
     {
-        if(_appDbContext.Books.Where(x => x.Id == boolId).Count() == 0)
+        if(_appDbContext.Books.Where(x => x.Id == bookId).Count() == 0)
         {
             return false;
         }
@@ -167,9 +171,36 @@ public class BookService(AppDbContext appDbContext, IMapper mapper)
 
         _appDbContext.UserBooks.Add(new Domain.Models.Entities.UserBooks
         {
-            BookId = boolId,
+            BookId = bookId,
             UserId = userId
         });
+
+        await _appDbContext.SaveChangesAsync(ct);
+
+        return true;
+    }
+
+    public async Task<bool> DeleteBookFromFavorite(int bookId, HttpContext httpContext, CancellationToken ct)
+    {
+        if (_appDbContext.Books.Where(x => x.Id == bookId).Count() == 0)
+        {
+            return false;
+        }
+
+        var userId = await _appDbContext.Users
+                        .Where(x => x.Email == httpContext.User
+                        .FindFirstValue(ClaimTypes.Email))
+                        .Select(x => x.Id)
+                        .SingleOrDefaultAsync(ct);
+
+        var book = await _appDbContext.UserBooks.Where(x => x.UserId == userId && x.BookId ==  bookId).SingleOrDefaultAsync(ct);
+
+        if (book == null)
+        {
+            return false;
+        }
+
+        _appDbContext.UserBooks.Remove(book);
 
         await _appDbContext.SaveChangesAsync(ct);
 
