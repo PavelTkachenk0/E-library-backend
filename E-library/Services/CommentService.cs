@@ -83,4 +83,28 @@ public class CommentService(AppDbContext appDbContext)
 
         return comment.Id;
     }
+
+    public async Task<GetUserCommentsResponse> GetUserComments(HttpContext httpContext, CancellationToken ct)
+    {
+        var userId = await _appDbContext.Users
+                       .Where(x => x.Email == httpContext.User
+                       .FindFirstValue(ClaimTypes.Email))
+                       .Select(x => x.Id)
+                       .SingleOrDefaultAsync(ct);
+
+        var result = await _appDbContext.Comments.Where(c => c.UserId == userId).Select(c => new CommentDTO
+        {
+            Author = c.User!.Name,
+            Created = c.Created,
+            Id = c.Id,
+            Score = c.Score,
+            Text = c.Text,
+            Title = c.Title
+        }).ToArrayAsync(ct);
+
+        return new GetUserCommentsResponse
+        {
+            Res = result
+        };
+    }
 }
